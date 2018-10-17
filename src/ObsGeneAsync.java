@@ -1,5 +1,7 @@
+import java.util.concurrent.Future;
+
 public interface ObsGeneAsync {
 
-	public abstract Futur update(Generateur g);
+	public abstract Future<Object> update(Generateur g);
 
 }

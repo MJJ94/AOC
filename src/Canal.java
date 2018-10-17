@@ -1,6 +1,8 @@
+import java.util.concurrent.Future;
+
 public class Canal implements ObsGeneAsync {
 
-	public Futur update(Generateur g) {
+	public Future<Object> update(Generateur g) {
 		return null;
 	}
 
