@@ -1,15 +1,15 @@
 import java.util.Observable;
 import java.util.concurrent.Future;
 
-public class Afficheur implements ObsGene {
+public class Afficheur implements ObserverCapteur {
 
 
 	/**
-	 * @see ObsGene#update(Generateur)
+	 * @see ObserverCapteur#update(Capteur)
 	 * 
 	 *  
 	 */
-	public Future<Object> update(Generateur g) {
+	public Future<Object> update(Capteur g) {
 		return null;
 	}
 

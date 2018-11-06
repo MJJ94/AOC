@@ -1,8 +1,8 @@
 import java.util.concurrent.Future;
 
-public class Canal implements ObsGeneAsync {
+public class Canal implements ObsCaptAsync {
 
-	public Future<Object> update(Generateur g) {
+	public Future<Object> update(Capteur g) {
 		return null;
 	}
 

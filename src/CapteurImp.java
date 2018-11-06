@@ -1,11 +1,11 @@
 import java.util.List;
 
-public class GenerateurImpl implements Generateur {
+public class CapteurImp implements Capteur {
 
 	private int value;
-	private List<ObsGene> observers;
+	private List<ObserverCapteur> observers;
 
-	public GenerateurImpl(int value, List<ObsGene> observers) {
+	public CapteurImp(int value, List<ObserverCapteur> observers) {
 		super();
 		this.value = value;
 		this.observers = observers;
@@ -14,14 +14,14 @@ public class GenerateurImpl implements Generateur {
 	/**
 	 *  
 	 */
-	public void attach(ObsGene o) {
+	public void attach(ObserverCapteur o) {
 		observers.add(o);
 	}
 
 	/**
 	 *  
 	 */
-	public void detach(ObsGene o) {
+	public void detach(ObserverCapteur o) {
 		observers.remove(o);
 	}
 
@@ -35,7 +35,7 @@ public class GenerateurImpl implements Generateur {
 	}
 	
 	   public void notifyAllObsGenes(){
-		      for (ObsGene observer : observers) {
+		      for (ObserverCapteur observer : observers) {
 		         observer.update(null, observer);
 		      }
 		   } 	
