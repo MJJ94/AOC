@@ -1,22 +1,22 @@
-import java.util.Observable;
-import java.util.concurrent.Future;
-
 public class Afficheur implements ObserverCapteur {
 
+	private Capteur capteur;
 
 	/**
 	 * @see ObserverCapteur#update(Capteur)
 	 * 
 	 *  
 	 */
-	public Future<Object> update(Capteur g) {
-		return null;
+	public void update(Capteur g) {
+		setCapteur(g);
+	}
+	
+	public Capteur getCapteur() {
+		return capteur;
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+	public void setCapteur(Capteur capteur) {
+		this.capteur = capteur;
 	}
 
 }
