@@ -1,21 +1,21 @@
-public class Afficheur implements ObserverCapteur {
+public class Afficheur implements ObserverGenerator {
 
-	private Capteur capteur;
+	private Generator capteur;
 
 	/**
-	 * @see ObserverCapteur#update(Capteur)
+	 * @see ObserverGenerator#update(Generator)
 	 * 
 	 *  
 	 */
-	public void update(Capteur g) {
+	public void update(Generator g) {
 		setCapteur(g);
 	}
 	
-	public Capteur getCapteur() {
+	public Generator getCapteur() {
 		return capteur;
 	}
 
-	public void setCapteur(Capteur capteur) {
+	public void setCapteur(Generator capteur) {
 		this.capteur = capteur;
 	}
 

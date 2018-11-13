@@ -4,11 +4,11 @@ import java.util.concurrent.Future;
 
 public class Canal implements ObsCaptAsync {
 	
-	private Capteur capteur;
+	private Generator capteur;
 
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
 
-	public Future<Integer> update(Capteur g) {
+	public Future<Integer> update(Generator g) {
 		return executor.submit(() ->  {
 			Thread.sleep(1000);
 			return g.getValue();
@@ -19,11 +19,11 @@ public class Canal implements ObsCaptAsync {
 		return capteur.getValue();
 	}
 
-	public Capteur getCapteur() {
+	public Generator getCapteur() {
 		return capteur;
 	}
 
-	public void setCapteur(Capteur capteur) {
+	public void setCapteur(Generator capteur) {
 		this.capteur = capteur;
 	}
 
