@@ -1,6 +1,6 @@
 public class Afficheur implements ObserverGenerator {
 
-	private Generator capteur;
+	private Generator generator;
 
 	/**
 	 * @see ObserverGenerator#update(Generator)
@@ -8,15 +8,16 @@ public class Afficheur implements ObserverGenerator {
 	 *  
 	 */
 	public void update(Generator g) {
-		setCapteur(g);
+		setGenerator(g);
 	}
 	
 	public Generator getCapteur() {
-		return capteur;
+		return generator;
 	}
 
-	public void setCapteur(Generator capteur) {
-		this.capteur = capteur;
+	public void setGenerator(Generator generator) {
+		System.out.println("afficheur updates generator to " + generator);
+		this.generator = generator;
 	}
 
 }
