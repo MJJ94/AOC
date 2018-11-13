@@ -1,11 +1,8 @@
-import java.util.Observer;
-import java.util.concurrent.Future;
-
-public interface ObserverCapteur extends Observer{
+public interface ObserverCapteur{
 
 	/**
 	 *  
 	 */
-	public abstract Future<Object> update(Capteur g);
+	public abstract void update(Capteur g);
 
 }

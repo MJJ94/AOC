@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class CapteurImp implements Capteur {
+public class CapteurImp implements Capteur{
 
 	private int value;
 	private List<ObserverCapteur> observers;
@@ -36,7 +36,7 @@ public class CapteurImp implements Capteur {
 	
 	   public void notifyAllObsGenes(){
 		      for (ObserverCapteur observer : observers) {
-		         observer.update(null, observer);
+		         observer.update(this);
 		      }
 		   } 	
 
