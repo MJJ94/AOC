@@ -1,19 +1,23 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public class Canal implements ObsGenAsync, GeneratorAsync {
 
 	private Generator generator;
 
 	private ExecutorService executor = Executors.newSingleThreadExecutor();
-
-	public Future<Integer> update(Generator g) {
-		return executor.submit(() -> {
-			Thread.sleep(1000);
+	private ScheduledExecutorService s = Executors.newScheduledThreadPool(10);
+	Logger LOGGER = Logger.getLogger(this.getClass().getName());
+	public void update(Generator g) throws Exception{
+		LOGGER.info("Creating Method Invocation");
+			UpdateCallable mi = new Update(g, new Afficheur());
+			LOGGER.info("Calling schedule");
+			s.schedule(mi, 10, TimeUnit.SECONDS);
 			setGenerator(g);
-			return g.getValue();
-		});
 	}
 
 	public Future<Integer> getValue() {
@@ -28,7 +32,6 @@ public class Canal implements ObsGenAsync, GeneratorAsync {
 	}
 
 	public void setGenerator(Generator generator) {
-		System.out.println("Canal updates generator to: " + generator);
 		this.generator = generator;
 	}
 

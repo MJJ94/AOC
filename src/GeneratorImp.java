@@ -1,6 +1,6 @@
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.logging.Logger;
 
 public class GeneratorImp implements Generator {
 
@@ -8,8 +8,10 @@ public class GeneratorImp implements Generator {
 	private List<ObserverGenerator> observers;
 	private List<ObsGenAsync> observersGenAsync;
 	private Diffusion diffusion;
+	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 
-	public GeneratorImp(int value, List<ObserverGenerator> observers, List<ObsGenAsync> observersGenAsync, Diffusion diffusion) {
+	public GeneratorImp(int value, List<ObserverGenerator> observers, List<ObsGenAsync> observersGenAsync,
+			Diffusion diffusion) {
 		super();
 		this.value = value;
 		this.observers = observers;
@@ -30,7 +32,7 @@ public class GeneratorImp implements Generator {
 	}
 
 	public void setValue(int value) throws InterruptedException, ExecutionException {
-		System.out.println("updating to value: " + value);
+		LOGGER.info("excuting diffusion");
 		this.value = value;
 		this.diffusion.execute(this);
 	}
@@ -41,8 +43,12 @@ public class GeneratorImp implements Generator {
 		}
 
 		for (ObsGenAsync observer : observersGenAsync) {
-			Future<Integer> value = observer.update(this);
-			System.out.println(value.get());
+			try {
+				observer.update(this);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -53,5 +59,5 @@ public class GeneratorImp implements Generator {
 	public void detach(ObsGenAsync o) {
 		observersGenAsync.remove(o);
 	}
-	
+
 }
