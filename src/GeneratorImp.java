@@ -27,8 +27,8 @@ public class GeneratorImp implements Generator {
 		observers.remove(o);
 	}
 
-	public int getValue() {
-		return value;
+	public int getValue(Afficheur monitor) {
+		return diffusion.getValue(monitor);
 	}
 
 	public void setValue(int value) throws InterruptedException, ExecutionException {

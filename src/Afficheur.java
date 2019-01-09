@@ -1,10 +1,13 @@
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public class Afficheur implements ObserverGenerator {
 
 	private Generator generator;
 	private Logger LOGGER = Logger.getLogger(this.getClass().getName());
-
+	private Canal canal;
 	/**
 	 * @see ObserverGenerator#update(Generator)
 	 * 
@@ -15,8 +18,18 @@ public class Afficheur implements ObserverGenerator {
 		setGenerator(g);
 	}
 	
-	public Integer getValue() {
-		//call canal.getvalue(afficheur)
+	public Integer getValue(Canal canal) {
+//		call canal.getvalue(afficheur)
+		ScheduledFuture<Integer> sf= canal.getValue(this);
+			try {
+				return sf.get();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		return null;
 	}
 	

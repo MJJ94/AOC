@@ -34,4 +34,10 @@ public class DiffusionCausal implements Diffusion {
 		this.canal = canal;
 
 	}
+
+	@Override
+	public Integer getValue(Afficheur monitor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -13,5 +13,10 @@ public class DiffusionSequentiel implements Diffusion {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public Integer getValue(Afficheur monitor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

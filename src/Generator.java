@@ -12,6 +12,6 @@ public interface Generator {
 	public void notifyAllObsGenes() throws InterruptedException, ExecutionException;
 
 
-	public int getValue();
+	public int getValue(Afficheur monitor);
 
 }

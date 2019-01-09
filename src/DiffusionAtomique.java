@@ -1,8 +1,11 @@
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
 
 public class DiffusionAtomique implements Diffusion {
 
 	private Canal canal;
+	private Integer value;
 	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 
 	public DiffusionAtomique(Canal canal) {
@@ -32,6 +35,21 @@ public class DiffusionAtomique implements Diffusion {
 
 	public void setCanal(Canal canal) {
 		this.canal = canal;
+	}
+	
+	public void setValue(Integer value) {
+		this.value = value;
+	}
+
+	@Override
+	public Integer getValue(Afficheur monitor) {
+		ReadWriteLock lock = new ReentrantReadWriteLock();
+		lock.readLock().lock();
+		try {
+			return value;
+		} finally {
+			lock.readLock().unlock();
+		}
 	}
 
 }

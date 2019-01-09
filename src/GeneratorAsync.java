@@ -1,5 +1,6 @@
 import java.util.concurrent.Future;
+import java.util.concurrent.ScheduledFuture;
 
 public interface GeneratorAsync {
-	Future<Integer> getValue();
+	ScheduledFuture<Integer> getValue(Afficheur m);
 }
