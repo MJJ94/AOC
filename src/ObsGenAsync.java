@@ -1,6 +1,7 @@
+import java.util.concurrent.Future;
 
 public interface ObsGenAsync {
 
-	public void update(Generator g) throws Exception;
+	public Future<Integer> update(Generator g) throws Exception;
 
 }

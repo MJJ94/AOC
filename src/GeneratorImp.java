@@ -1,48 +1,35 @@
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
 
-public class GeneratorImp implements Generator {
+public class GeneratorImp implements Generator, Runnable {
 
 	private int value;
-	private List<ObserverGenerator> observers;
-	private List<ObsGenAsync> observersGenAsync;
+	private List<Canal> canals;
 	private Diffusion diffusion;
 	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 
-	public GeneratorImp(int value, List<ObserverGenerator> observers, List<ObsGenAsync> observersGenAsync,
-			Diffusion diffusion) {
+	public GeneratorImp(int value, Diffusion diffusion, List<Canal> Canals) {
 		super();
 		this.value = value;
-		this.observers = observers;
-		this.observersGenAsync = observersGenAsync;
+		this.canals = Canals;
 		this.diffusion = diffusion;
 	}
 
-	public void attach(ObserverGenerator o) {
-		observers.add(o);
+	public int getValue() {
+//		LOGGER.info("Returning value = " + value);
+		return diffusion.getValue();
 	}
 
-	public void detach(ObserverGenerator o) {
-		observers.remove(o);
-	}
-
-	public int getValue(Afficheur monitor) {
-		return diffusion.getValue(monitor);
-	}
-
-	public void setValue(int value) throws InterruptedException, ExecutionException {
-		LOGGER.info("excuting diffusion");
+	public void setValue(Integer value) {
 		this.value = value;
-		this.diffusion.execute(this);
 	}
 
 	public void notifyAllObsGenes() throws InterruptedException, ExecutionException {
-		for (ObserverGenerator observer : observers) {
-			observer.update(this);
-		}
-
-		for (ObsGenAsync observer : observersGenAsync) {
+		for (ObsGenAsync observer : canals) {
+//			LOGGER.info("updaet canal: " + observer);
 			try {
 				observer.update(this);
 			} catch (Exception e) {
@@ -52,12 +39,37 @@ public class GeneratorImp implements Generator {
 		}
 	}
 
-	public void attach(ObsGenAsync o) {
-		observersGenAsync.add(o);
+	public void attach(Canal c) {
+		canals.add(c);
 	}
 
-	public void detach(ObsGenAsync o) {
-		observersGenAsync.remove(o);
+	public void detach(Canal c) {
+		canals.remove(c);
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			value++;
+			try {
+				notifyAllObsGenes();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+	}
+
+	public List<Canal> getCanals() {
+		return canals;
+	}
+
+	public void setCanals(List<Canal> canals) {
+		this.canals = canals;
 	}
 
 }

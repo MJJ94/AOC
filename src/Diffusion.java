@@ -1,6 +1,11 @@
-
 public interface Diffusion {
 	void configure();
-	void execute(Generator g);
-	Integer getValue(Afficheur monitor);
+
+	void execute();
+
+	Integer getValue();
+
+	void setGenerateur(Generator g);
+
+	Generator getGenerator();
 }

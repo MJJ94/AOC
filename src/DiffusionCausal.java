@@ -15,29 +15,30 @@ public class DiffusionCausal implements Diffusion {
 
 	}
 
-//on prend la valeur la plus recente (getValue)
 	@Override
-	public void execute(Generator g) {
-		LOGGER.info("Calling update");
-		try {
-			canal.update(g);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public Canal getCanal() {
-		return canal;
-	}
-
-	public void setCanal(Canal canal) {
-		this.canal = canal;
-
+	public void execute() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public Integer getValue(Afficheur monitor) {
+	public Integer getValue() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void setGenerateur(Generator g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Generator getGenerator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//on prend la valeur la plus recente (getValue)
+
 }

@@ -8,13 +8,27 @@ public class DiffusionSequentiel implements Diffusion {
 	}
 // l'ecriture n'est pas arrété pendant la lecture
 //	la lecture emploie une copie géré de maniere atomique
+
 	@Override
-	public void execute(Generator g) {
+	public void execute() {
 		// TODO Auto-generated method stub
 		
 	}
+
 	@Override
-	public Integer getValue(Afficheur monitor) {
+	public Integer getValue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setGenerateur(Generator g) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Generator getGenerator() {
 		// TODO Auto-generated method stub
 		return null;
 	}

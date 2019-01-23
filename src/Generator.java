@@ -1,17 +1,18 @@
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public interface Generator {
-	public void attach(ObserverGenerator o);
+	void attach(Canal c);
 
-	public void attach(ObsGenAsync o);
+	void detach(Canal c);
 
-	public void detach(ObserverGenerator o);
+	void notifyAllObsGenes() throws InterruptedException, ExecutionException;
+
+	int getValue();
+
+	List<Canal> getCanals();
+
+	void setCanals(List<Canal> canals);
 	
-	public void detach(ObsGenAsync o);
-
-	public void notifyAllObsGenes() throws InterruptedException, ExecutionException;
-
-
-	public int getValue(Afficheur monitor);
-
+	void setValue(Integer value);
 }

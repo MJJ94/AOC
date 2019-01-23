@@ -1,21 +1,17 @@
 import java.util.concurrent.Callable;
 import java.util.logging.Logger;
 
-public class GetValueCallable implements Callable{
+public class GetValueCallable implements Callable<Integer>{
 
 	Generator generator;
-	Afficheur monitor;
 	Logger LOGGER = Logger.getLogger(this.getClass().getName());
-	public GetValueCallable(Generator generator, Afficheur monitor) {
-
+	public GetValueCallable(Generator generator) {
 		this.generator = generator;
-		this.monitor = monitor;
-	
 	}
 	@Override
 	public Integer call() throws Exception {
-		LOGGER.info("Getting Value " + generator);
-		return generator.getValue(monitor);
+//		LOGGER.info("Calling atomique.getValue " + generator.getValue());
+		return generator.getValue();
 	}
 
 }
