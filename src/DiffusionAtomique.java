@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 
 public class DiffusionAtomique implements Diffusion {
 
-	private Canal canal;
 	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private Generator generator;
 	private ReadWriteLock lock = new ReentrantReadWriteLock();
@@ -18,10 +17,9 @@ public class DiffusionAtomique implements Diffusion {
 	private List<Future<Integer>> futures;
 	private Integer value;
 
-	public DiffusionAtomique(Canal canal) {
-		this.canal = canal;
+	public DiffusionAtomique(Integer value) {
+		this.value = value;
 	}
-
 	@Override
 	public void configure() {
 
@@ -47,30 +45,20 @@ public class DiffusionAtomique implements Diffusion {
 		configure();
 	}
 
-	public Canal getCanal() {
-		return canal;
-	}
-
-	public void setCanal(Canal canal) {
-		this.canal = canal;
-	}
-
 	@Override
 	public Integer getValue() {
-		// TODO Auto-generated method stub
-		return null;
+		return value;
 	}
 
 	@Override
-	public void setGenerateur(Generator g) {
-		// TODO Auto-generated method stub
+	public void setGenerator(Generator g) {
+		this.generator = g;
 
 	}
 
 	@Override
 	public Generator getGenerator() {
-		// TODO Auto-generated method stub
-		return null;
+		return generator;
 	}
 
 	private void incrementValue() {

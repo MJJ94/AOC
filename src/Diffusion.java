@@ -5,7 +5,7 @@ public interface Diffusion {
 
 	Integer getValue();
 
-	void setGenerateur(Generator g);
+	void setGenerator(Generator g);
 
 	Generator getGenerator();
 }

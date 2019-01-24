@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
@@ -26,16 +27,20 @@ public class Canal implements ObsGenAsync, GeneratorAsync {
 //	}
 	public Future<Integer> update(Generator g) {
 //		LOGGER.info("Creating Method Invocation");
-//		LOGGER.info("GenratorUpdate: " + generator);
 		UpdateCallable mi = new UpdateCallable(generator, monitor);
-		return s.schedule(mi, ((long) Math.random() * 10), TimeUnit.MILLISECONDS);
+		Random random = new Random();
+		int duration = random.nextInt(3);
+//		LOGGER.info("update duration = " + duration);
+		return s.schedule(mi, duration, TimeUnit.SECONDS);
 	}
 
 	public ScheduledFuture<Integer> getValue(Monitor m) {
 //		LOGGER.info("Generator " + generator);
 		GetValueCallable mi = new GetValueCallable(generator);
-//		LOGGER.info("Calling schedule with getValueMI");
-		return s.schedule(mi, ((long) Math.random() * 10), TimeUnit.MILLISECONDS);
+		Random random = new Random();
+		int duration = random.nextInt(3);
+//		LOGGER.info("getValue duration = " + duration);
+		return s.schedule(mi, duration, TimeUnit.SECONDS);
 	}
 
 	public Generator getGenerator() {

@@ -8,22 +8,24 @@ public class Monitor implements ObserverGenerator {
 	private Canal canal;
 	private Future<Integer> future;
 	private Integer value;
+	private Integer id;
 
 	/**
 	 * @see ObserverGenerator#update(Generator)
 	 * 
 	 * 
 	 */
-	public Monitor(Canal canal) {
+	public Monitor(Canal canal, Integer id) {
 		super();
 		this.canal = canal;
+		this.id = id;
 	}
 
 	public void update(Generator g) {
 		future = canal.getValue(this);
 		try {
 			value = future.get();
-			LOGGER.info("the value is " + value);
+			LOGGER.info(id + " the value is " + value);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

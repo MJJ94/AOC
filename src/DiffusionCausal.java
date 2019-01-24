@@ -2,12 +2,7 @@ import java.util.logging.Logger;
 
 public class DiffusionCausal implements Diffusion {
 
-	private Canal canal;
 	Logger LOGGER = Logger.getLogger(this.getClass().getName());
-
-	public DiffusionCausal(Canal canal) {
-		this.canal = canal;
-	}
 
 	@Override
 	public void configure() {
@@ -18,7 +13,7 @@ public class DiffusionCausal implements Diffusion {
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -28,9 +23,9 @@ public class DiffusionCausal implements Diffusion {
 	}
 
 	@Override
-	public void setGenerateur(Generator g) {
+	public void setGenerator(Generator g) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

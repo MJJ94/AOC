@@ -4,7 +4,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
 
-public class GeneratorImp implements Generator, Runnable {
+public class GeneratorImp implements Generator{
 
 	private int value;
 	private List<Canal> canals;
@@ -45,23 +45,6 @@ public class GeneratorImp implements Generator, Runnable {
 
 	public void detach(Canal c) {
 		canals.remove(c);
-	}
-
-	@Override
-	public void run() {
-		while (true) {
-			value++;
-			try {
-				notifyAllObsGenes();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-		}
 	}
 
 	public List<Canal> getCanals() {

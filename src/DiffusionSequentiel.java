@@ -4,7 +4,7 @@ public class DiffusionSequentiel implements Diffusion {
 	@Override
 	public void configure() {
 		// TODO Auto-generated method stub
-		
+
 	}
 // l'ecriture n'est pas arrété pendant la lecture
 //	la lecture emploie une copie géré de maniere atomique
@@ -12,7 +12,7 @@ public class DiffusionSequentiel implements Diffusion {
 	@Override
 	public void execute() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -22,9 +22,9 @@ public class DiffusionSequentiel implements Diffusion {
 	}
 
 	@Override
-	public void setGenerateur(Generator g) {
+	public void setGenerator(Generator g) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
