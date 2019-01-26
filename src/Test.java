@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+import canal.Canal;
+import diffusion.Diffusion;
+import diffusion.DiffusionSequentiel;
+import generator.GeneratorImp;
+import monitor.Monitor;
+
 public class Test {
 
 	public static void main(String[] args) throws Exception {

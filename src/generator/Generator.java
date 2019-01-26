@@ -1,5 +1,8 @@
+package generator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import canal.Canal;
 
 public interface Generator {
 	void attach(Canal c);

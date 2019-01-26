@@ -1,8 +1,11 @@
+package diffusion;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+import generator.Generator;
 
 public class DiffusionSequentiel implements Diffusion {
 // l'ecriture n'est pas arrété pendant la lecture

@@ -1,3 +1,7 @@
+package diffusion;
+
+import generator.Generator;
+
 public interface Diffusion {
 	void configure(Integer value, Generator generator);
 

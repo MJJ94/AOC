@@ -1,3 +1,4 @@
+package canal;
 import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -5,6 +6,11 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
+
+import callable.GetValueCallable;
+import callable.UpdateCallable;
+import generator.Generator;
+import monitor.Monitor;
 
 public class Canal implements ObsGenAsync, GeneratorAsync {
 
@@ -22,9 +28,6 @@ public class Canal implements ObsGenAsync, GeneratorAsync {
 	private ScheduledExecutorService s = Executors.newScheduledThreadPool(10);
 	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 
-//	public Canal(Monitor monitor) {
-//		this.monitor = monitor;
-//	}
 	public Future<Integer> update(Generator g) {
 //		LOGGER.info("Creating Method Invocation");
 		UpdateCallable mi = new UpdateCallable(generator, monitor);

@@ -1,6 +1,10 @@
+package monitor;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.logging.Logger;
+
+import canal.Canal;
+import generator.Generator;
 
 public class Monitor implements ObserverGenerator {
 
@@ -27,10 +31,8 @@ public class Monitor implements ObserverGenerator {
 			value = future.get();
 			LOGGER.info(id + " the value is " + value);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
