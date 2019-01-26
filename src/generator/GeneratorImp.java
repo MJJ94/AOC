@@ -1,8 +1,10 @@
+package generator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
+
+import canal.Canal;
+import diffusion.Diffusion;
 
 public class GeneratorImp implements Generator{
 
@@ -29,10 +31,10 @@ public class GeneratorImp implements Generator{
 	}
 
 	public void notifyAllObsGenes() throws InterruptedException, ExecutionException {
-		for (ObsGenAsync observer : canals) {
+		for (Canal canal : canals) {
 //			LOGGER.info("updaet canal: " + observer);
 			try {
-				observer.update(this);
+				canal.update(this);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

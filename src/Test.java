@@ -1,5 +1,10 @@
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+
+import canal.Canal;
+import diffusion.Diffusion;
+import diffusion.DiffusionSequentiel;
+import generator.GeneratorImp;
+import monitor.Monitor;
 
 public class Test {
 
@@ -19,8 +24,8 @@ public class Test {
 		canal2.setMonitor(monitor2);
 		canal3.setMonitor(monitor3);
 		
-		DiffusionAtomique diffusionAtom = new DiffusionAtomique(0);
-		GeneratorImp generator = new GeneratorImp(0,diffusionAtom, new ArrayList<>());
+		Diffusion diffusion = new DiffusionSequentiel();
+		GeneratorImp generator = new GeneratorImp(0,diffusion, new ArrayList<>());
 		canal.setGenerator(generator);
 		canal1.setGenerator(generator);
 		canal2.setGenerator(generator);
@@ -31,11 +36,10 @@ public class Test {
 		generator.attach(canal2);
 		generator.attach(canal3);
 		
-		diffusionAtom.setGenerator(generator);
+		diffusion.configure(0, generator);
 		while(true) {
-		diffusionAtom.execute();
-		Thread thread = new Thread();
-		thread.sleep(1000);
+		diffusion.execute();
+		Thread.sleep(1000);
 		}
 	}
 
