@@ -1,5 +1,5 @@
 public interface Diffusion {
-	void configure();
+	void configure(Integer value, Generator generator);
 
 	void execute();
 

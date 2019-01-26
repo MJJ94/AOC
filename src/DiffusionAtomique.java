@@ -1,6 +1,3 @@
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -9,36 +6,26 @@ import java.util.stream.Collectors;
 
 public class DiffusionAtomique implements Diffusion {
 
+	// l'ecriture est arretée pendant les lectures
+
 	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private Generator generator;
 	private ReadWriteLock lock = new ReentrantReadWriteLock();
 	private Lock r = lock.readLock();
 	private Lock w = lock.writeLock();
-	private List<Future<Integer>> futures;
 	private Integer value;
 
-	public DiffusionAtomique(Integer value) {
-		this.value = value;
-	}
-
 	@Override
-	public void configure() {
-		// TODO Auto-generated method stub
+	public void configure(Integer value, Generator generator) {
+		this.value = value;
+		this.generator = generator;
 	}
-
-// l'ecriture est arretée pendant les lectures
 
 	@Override
 	public void execute() {
 		incrementValue();
-		System.out.println("new value: " + value);
 		generator.setValue(value);
-//		futures = generator.getCanals().stream().map(c -> c.update(generator)).collect(Collectors.toList());
-//		try {
-//			System.out.println("futures.get(0).get() " + futures.get(0).get());
-//		} catch (InterruptedException | ExecutionException e) {
-//			e.printStackTrace();
-//		}
+		generator.getCanals().stream().map(c -> c.update(generator)).collect(Collectors.toList());
 	}
 
 	@Override
