@@ -1,4 +1,3 @@
-import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledFuture;
 
 public interface GeneratorAsync {

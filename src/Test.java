@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class Test {
 
@@ -19,7 +18,7 @@ public class Test {
 		canal2.setMonitor(monitor2);
 		canal3.setMonitor(monitor3);
 		
-		Diffusion diffusion = new DiffusionCausal();
+		Diffusion diffusion = new DiffusionSequentiel();
 		GeneratorImp generator = new GeneratorImp(0,diffusion, new ArrayList<>());
 		canal.setGenerator(generator);
 		canal1.setGenerator(generator);
@@ -34,8 +33,7 @@ public class Test {
 		diffusion.configure(0, generator);
 		while(true) {
 		diffusion.execute();
-		Thread thread = new Thread();
-		thread.sleep(1000);
+		Thread.sleep(1000);
 		}
 	}
 
