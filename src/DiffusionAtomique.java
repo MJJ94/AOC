@@ -20,34 +20,35 @@ public class DiffusionAtomique implements Diffusion {
 	public DiffusionAtomique(Integer value) {
 		this.value = value;
 	}
+
 	@Override
 	public void configure() {
-
 		// TODO Auto-generated method stub
-
-		incrementValue();
-		System.out.println("new value: " + value);
-		generator.setValue(value);
-		futures = generator.getCanals().stream().map(c -> c.update(generator)).collect(Collectors.toList());
-		try {
-			System.out.println("futures.get(0).get() " + futures.get(0).get());
-		} catch (InterruptedException | ExecutionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 // l'ecriture est arretée pendant les lectures
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		configure();
+		incrementValue();
+		System.out.println("new value: " + value);
+		generator.setValue(value);
+//		futures = generator.getCanals().stream().map(c -> c.update(generator)).collect(Collectors.toList());
+//		try {
+//			System.out.println("futures.get(0).get() " + futures.get(0).get());
+//		} catch (InterruptedException | ExecutionException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	@Override
 	public Integer getValue() {
-		return value;
+		r.lock();
+		try {
+			return value;
+		} finally {
+			r.unlock();
+		}
 	}
 
 	@Override

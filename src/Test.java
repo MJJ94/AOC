@@ -32,9 +32,11 @@ public class Test {
 		generator.attach(canal3);
 		
 		diffusionAtom.setGenerator(generator);
-//		while(true) {
-		diffusionAtom.configure();
-//		}
+		while(true) {
+		diffusionAtom.execute();
+		Thread thread = new Thread();
+		thread.sleep(1000);
+		}
 	}
 
 }

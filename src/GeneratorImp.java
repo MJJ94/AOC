@@ -25,6 +25,7 @@ public class GeneratorImp implements Generator{
 
 	public void setValue(Integer value) {
 		this.value = value;
+		LOGGER.info("generator value is " + this.value);
 	}
 
 	public void notifyAllObsGenes() throws InterruptedException, ExecutionException {
