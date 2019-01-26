@@ -1,14 +1,12 @@
 package diffusion;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
+import java.util.stream.Collectors;
 import generator.Generator;
 
 public class DiffusionCausal implements Diffusion {
 
 //on prend la valeur la plus recente (getValue)
 
-	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private Generator generator;
 	private Integer value;
 
@@ -27,7 +25,7 @@ public class DiffusionCausal implements Diffusion {
 
 	@Override
 	public Integer getValue() {
-			return value;
+		return value;
 	}
 
 	@Override

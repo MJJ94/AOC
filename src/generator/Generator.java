@@ -1,4 +1,5 @@
 package generator;
+
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -16,6 +17,6 @@ public interface Generator {
 	List<Canal> getCanals();
 
 	void setCanals(List<Canal> canals);
-	
+
 	void setValue(Integer value);
 }

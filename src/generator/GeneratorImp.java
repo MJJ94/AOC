@@ -1,4 +1,5 @@
 package generator;
+
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
@@ -6,7 +7,7 @@ import java.util.logging.Logger;
 import canal.Canal;
 import diffusion.Diffusion;
 
-public class GeneratorImp implements Generator{
+public class GeneratorImp implements Generator {
 
 	private int value;
 	private List<Canal> canals;
@@ -21,7 +22,6 @@ public class GeneratorImp implements Generator{
 	}
 
 	public int getValue() {
-//		LOGGER.info("Returning value = " + value);
 		return diffusion.getValue();
 	}
 
@@ -32,11 +32,9 @@ public class GeneratorImp implements Generator{
 
 	public void notifyAllObsGenes() throws InterruptedException, ExecutionException {
 		for (Canal canal : canals) {
-//			LOGGER.info("updaet canal: " + observer);
 			try {
 				canal.update(this);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
