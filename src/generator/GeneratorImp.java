@@ -1,11 +1,12 @@
 package generator;
+
 import java.util.List;
 import java.util.logging.Logger;
 
 import canal.Canal;
 import diffusion.Diffusion;
 
-public class GeneratorImp implements Generator{
+public class GeneratorImp implements Generator {
 
 	private int value;
 	private List<Canal> canals;

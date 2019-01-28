@@ -5,7 +5,6 @@ import java.util.TimerTask;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.logging.Logger;
 
 import generator.Generator;
 
@@ -13,7 +12,6 @@ public class DiffusionAtomique implements Diffusion {
 
 	// l'ecriture est arretée pendant les lectures
 
-	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private Generator generator;
 	private ReadWriteLock lock = new ReentrantReadWriteLock();
 	private Lock r = lock.readLock();

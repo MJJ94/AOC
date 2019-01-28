@@ -6,8 +6,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
-
 import callable.GetValueCallable;
 import callable.UpdateCallable;
 import generator.Generator;
@@ -27,7 +25,6 @@ public class Canal implements ObsGenAsync, GeneratorAsync {
 	}
 
 	private ScheduledExecutorService s = Executors.newScheduledThreadPool(10);
-	Logger LOGGER = Logger.getLogger(this.getClass().getName());
 
 	public Future<Integer> update(Generator g) {
 		UpdateCallable mi = new UpdateCallable(generator, monitor);
@@ -37,7 +34,6 @@ public class Canal implements ObsGenAsync, GeneratorAsync {
 	}
 
 	public ScheduledFuture<Integer> getValue(Monitor m) {
-		LOGGER.info("Generator " + generator);
 		GetValueCallable mi = new GetValueCallable(generator);
 		Random random = new Random();
 		int duration = random.nextInt(350);
