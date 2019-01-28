@@ -3,9 +3,6 @@ package interfaceActiveObject;
 import java.awt.Button;
 import java.util.ArrayList;
 import java.util.logging.Logger;
-
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import canal.Canal;
 import diffusion.Diffusion;
 import diffusion.DiffusionAtomique;
@@ -78,10 +75,10 @@ public class MainViewController {
 		canal2 = new Canal();
 		canal3 = new Canal();
 		canal4 = new Canal();
-		monitor1Object = new Monitor(canal1, 1);
-		monitor2Object = new Monitor(canal2, 2);
-		monitor3Object = new Monitor(canal3, 3);
-		monitor4Object = new Monitor(canal4, 4);
+		monitor1Object = new Monitor(canal1);
+		monitor2Object = new Monitor(canal2);
+		monitor3Object = new Monitor(canal3);
+		monitor4Object = new Monitor(canal4);
 		canal1.setMonitor(monitor1Object);
 		canal2.setMonitor(monitor2Object);
 		canal3.setMonitor(monitor3Object);

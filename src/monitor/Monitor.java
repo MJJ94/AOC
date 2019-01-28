@@ -11,7 +11,6 @@ public class Monitor implements ObserverGenerator {
 	private Canal canal;
 	private Future<Integer> future;
 	private Integer value;
-	private Integer id;
 	private  IntegerProperty integerProperty;
 		
 	
@@ -20,10 +19,9 @@ public class Monitor implements ObserverGenerator {
 	 * 
 	 * 
 	 */
-	public Monitor(Canal canal, Integer id) {
+	public Monitor(Canal canal) {
 		super();
 		this.canal = canal;
-		this.id = id;
 		this.value = 0;
 		integerProperty = new SimpleIntegerProperty(this.value);
 	}

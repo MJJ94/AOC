@@ -32,7 +32,7 @@ public class Canal implements ObsGenAsync, GeneratorAsync {
 	public Future<Integer> update(Generator g) {
 		UpdateCallable mi = new UpdateCallable(generator, monitor);
 		Random random = new Random();
-		int duration = random.nextInt(500);
+		int duration = random.nextInt(300);
 		return s.schedule(mi, duration, TimeUnit.MILLISECONDS);
 	}
 
@@ -40,7 +40,7 @@ public class Canal implements ObsGenAsync, GeneratorAsync {
 		LOGGER.info("Generator " + generator);
 		GetValueCallable mi = new GetValueCallable(generator);
 		Random random = new Random();
-		int duration = random.nextInt(400);
+		int duration = random.nextInt(350);
 		return s.schedule(mi, duration, TimeUnit.MILLISECONDS);
 	}
 
