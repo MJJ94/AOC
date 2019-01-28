@@ -1,6 +1,5 @@
 package generator;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 import canal.Canal;
@@ -21,22 +20,20 @@ public class GeneratorImp implements Generator{
 	}
 
 	public int getValue() {
-//		LOGGER.info("Returning value = " + value);
 		return diffusion.getValue();
 	}
 
 	public void setValue(Integer value) {
 		this.value = value;
+		notifyAllObsGenes();
 		LOGGER.info("generator value is " + this.value);
 	}
 
-	public void notifyAllObsGenes() throws InterruptedException, ExecutionException {
+	public void notifyAllObsGenes(){
 		for (Canal canal : canals) {
-//			LOGGER.info("updaet canal: " + observer);
 			try {
 				canal.update(this);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -56,6 +53,16 @@ public class GeneratorImp implements Generator{
 
 	public void setCanals(List<Canal> canals) {
 		this.canals = canals;
+	}
+
+	@Override
+	public void setDiffusion(Diffusion diffusion) {
+		this.diffusion = diffusion;
+	}
+	
+	public void stopDiffusion() {
+		this.diffusion.stop();
+
 	}
 
 }

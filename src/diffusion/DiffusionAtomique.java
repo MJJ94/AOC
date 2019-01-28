@@ -1,9 +1,11 @@
 package diffusion;
+
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import generator.Generator;
 
@@ -17,6 +19,8 @@ public class DiffusionAtomique implements Diffusion {
 	private Lock r = lock.readLock();
 	private Lock w = lock.writeLock();
 	private Integer value;
+	private Timer timer = new Timer();
+	private TimerTask timerTask;
 
 	@Override
 	public void configure(Integer value, Generator generator) {
@@ -26,9 +30,17 @@ public class DiffusionAtomique implements Diffusion {
 
 	@Override
 	public void execute() {
-		incrementValue();
-		generator.setValue(value);
-		generator.getCanals().stream().map(c -> c.update(generator)).collect(Collectors.toList());
+		timer = new Timer();
+		if (timerTask == null || timerTask.scheduledExecutionTime() > 0) {
+			timerTask = new TimerTask() {
+				@Override
+				public void run() {
+					incrementValue();
+					generator.setValue(value);
+				}
+			};
+		}
+		timer.scheduleAtFixedRate(timerTask, 0, 1000);
 	}
 
 	@Override
@@ -46,6 +58,7 @@ public class DiffusionAtomique implements Diffusion {
 		this.generator = g;
 
 	}
+	
 
 	@Override
 	public Generator getGenerator() {
@@ -59,5 +72,9 @@ public class DiffusionAtomique implements Diffusion {
 		} finally {
 			w.unlock();
 		}
+	}
+	@Override
+	public void stop() {
+		timer.cancel();
 	}
 }

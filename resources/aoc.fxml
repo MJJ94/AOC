@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,19 +11,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="540.0" style="-fx-background-color: red -fx-border-color: red;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceActiveObject.MainViewController">
+<VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="540.0" style="-fx-background-color: white -fx-border-color: red;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaceActiveObject.MainViewController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Label text="Broadcast method:" />
-            <RadioButton mnemonicParsing="false" text="Atomic">
-               <toggleGroup>
-                  <ToggleGroup fx:id="broadcastMethod" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton layoutX="307.0" layoutY="51.0" mnemonicParsing="false" selected="true" text="Causal" toggleGroup="$broadcastMethod" />
-            <RadioButton layoutX="343.0" layoutY="51.0" mnemonicParsing="false" text="Sequential" toggleGroup="$broadcastMethod" />
-            <Button mnemonicParsing="false" text="Generate" />
+            <RadioButton fx:id="atomic" layoutX="64.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#chooseAtomic" selected="true" text="ATOMIQUE" />
+      		<RadioButton fx:id="sequential" layoutX="212.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#chooseSequentiel" text="SEQUENTIELLE" />
+      		<RadioButton fx:id="causal" layoutX="383.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#chooseCausal"  text="CAUSALE" />
+            <Button mnemonicParsing="false" onMouseClicked="#generate" text="Generate" />
+            <Button layoutX="408.0" layoutY="44.0" mnemonicParsing="false" onMouseClicked="#stop" text="Stop" />
          </children>
       </HBox>
       <GridPane>
@@ -36,26 +32,47 @@
           <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="monitor1" text="0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="26.0" />
-               </font></Label>
-            <Label fx:id="monitor2" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+            <Label fx:id="monitor1" text="monitor1" GridPane.columnIndex="0" GridPane.rowIndex="0">
                <font>
                   <Font size="26.0" />
                </font>
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+               <GridPane.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" />
+               </GridPane.margin></Label>
+            <Label fx:id="monitor2" text="monitor2" GridPane.columnIndex="1" GridPane.rowIndex="0">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <GridPane.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" />
+               </GridPane.margin>
             </Label>
-            <Label fx:id="monitor3" text="0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label fx:id="monitor3" text="monitor3" GridPane.columnIndex="0" GridPane.rowIndex="1">
                <font>
                   <Font size="26.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" />
+               </GridPane.margin>
             </Label>
-            <Label fx:id="monitor4" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label fx:id="monitor4" text="monitor4" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="26.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="50.0" left="50.0" right="50.0" />
+               </GridPane.margin>
             </Label>
          </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
       </GridPane>
    </children>
 </VBox>

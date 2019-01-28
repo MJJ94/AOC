@@ -13,7 +13,7 @@ public class GetValueCallable implements Callable<Integer>{
 	}
 	@Override
 	public Integer call() throws Exception {
-//		LOGGER.info("Calling atomique.getValue " + generator.getValue());
+
 		return generator.getValue();
 	}
 

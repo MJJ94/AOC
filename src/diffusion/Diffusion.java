@@ -12,4 +12,6 @@ public interface Diffusion {
 	void setGenerator(Generator g);
 
 	Generator getGenerator();
+
+	void stop();
 }

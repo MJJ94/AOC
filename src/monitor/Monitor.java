@@ -1,19 +1,20 @@
 package monitor;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-import java.util.logging.Logger;
-
 import canal.Canal;
 import generator.Generator;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Monitor implements ObserverGenerator {
 
-	private Logger LOGGER = Logger.getLogger(this.getClass().getName());
 	private Canal canal;
 	private Future<Integer> future;
 	private Integer value;
 	private Integer id;
-
+	private  IntegerProperty integerProperty;
+		
+	
 	/**
 	 * @see ObserverGenerator#update(Generator)
 	 * 
@@ -23,13 +24,15 @@ public class Monitor implements ObserverGenerator {
 		super();
 		this.canal = canal;
 		this.id = id;
+		this.value = 0;
+		integerProperty = new SimpleIntegerProperty(this.value);
 	}
 
 	public void update(Generator g) {
 		future = canal.getValue(this);
 		try {
 			value = future.get();
-			LOGGER.info(id + " the value is " + value);
+			integerProperty.set(value);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
@@ -59,6 +62,14 @@ public class Monitor implements ObserverGenerator {
 
 	public void setValue(Integer value) {
 		this.value = value;
+	}
+
+	public IntegerProperty getIntegerProperty() {
+		return integerProperty;
+	}
+
+	public void setIntegerProperty(IntegerProperty integerProperty) {
+		this.integerProperty = integerProperty;
 	}
 
 }
